@@ -15,4 +15,25 @@ public class Rental {
    public Movie getMovie() {
       return _movie;
    }
+
+   public double getCharge() {
+      double charge = 0;
+      //determine amounts for each line
+      switch (_movie.getPriceCode()) {
+      case Movie.REGULAR:
+         charge += 2;
+         if (_daysRented > 2)
+            charge += (_daysRented - 2) * 1.5;
+         break;
+      case Movie.NEW_RELEASE:
+         charge += _daysRented * 3;
+         break;
+      case Movie.CHILDRENS:
+         charge += 1.5;
+         if (_daysRented > 3)
+            charge += (_daysRented - 3) * 1.5;
+          break;
+      }
+      return charge;
+   }
 }
